@@ -1,0 +1,8 @@
+export default function Categorias() {
+    return (
+        <div>
+            <h1>Categorías</h1>
+            <p>Esta es la página de categorías.</p>
+        </div>
+    );
+}
