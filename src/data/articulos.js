@@ -1,0 +1,23 @@
+
+export const ARTICULOS = {
+  1: {
+    titulo: "¿Cada cuánto debo vacunar a mi perro?",
+    imagen: "https://placehold.co/400x300/1F3D34/f3f2e7?text=Vacunas",
+    imagenDetalle: "https://placehold.co/720x360/1F3D34/f3f2e7?text=Vacunas",
+    resumen: "Te explicamos el calendario básico de vacunación y por qué no debes atrasarte.",
+    cuerpo: `<p>La vacunación es una de las herramientas más efectivas para prevenir enfermedades graves en perros. El esquema básico comienza entre las 6 y 8 semanas de vida, con refuerzos cada 3-4 semanas hasta las 16 semanas.</p>
+      <p>Luego de completar el esquema inicial, se recomienda un refuerzo anual. Algunas vacunas, como la antirrábica, tienen frecuencia obligatoria según la normativa local.</p>
+      <p>En Veterinaria San Marcos llevamos el registro de cada mascota para avisarte antes del vencimiento de sus próximas dosis.</p>`,
+  },
+  2: {
+    titulo: "5 datos curiosos sobre los gatos",
+    imagen: "https://placehold.co/400x300/C9962E/1c1408?text=Gatos",
+    imagenDetalle: "https://placehold.co/720x360/C9962E/1c1408?text=Gatos",
+    resumen: "Desde por qué ronronean hasta cuánto tiempo duermen al día.",
+    cuerpo: `<p>1. Los gatos pasan hasta el 70% de su vida durmiendo, lo que equivale a entre 12 y 16 horas al día.</p>
+      <p>2. Ronronean no solo cuando están felices, también como mecanismo de autocalma en momentos de estrés o dolor.</p>
+      <p>3. Tienen un sentido del olfato hasta 14 veces más desarrollado que el de los humanos.</p>
+      <p>4. Cada gato tiene una huella nasal única, tan particular como una huella dactilar humana.</p>
+      <p>5. Pueden saltar hasta 6 veces su propia altura gracias a la fuerza de sus patas traseras.</p>`,
+  },
+};
