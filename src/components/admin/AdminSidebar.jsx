@@ -62,14 +62,14 @@ export const AdminSidebar = () => {
 
                 <li className="nav-item mb-1">
                     <NavLink
-                        to="/admin/productos"
+                        to="/admin/inventario"
                         className={({ isActive }) =>
                             `admin-nav-link nav-link d-flex align-items-center gap-2 ${isActive ? 'active' : ''}`
                         }
                     >
                         <i className="bi bi-box-seam"></i>
-                        <img src={ProductosIcon} alt="Productos" width="20" height="20" />
-                        Productos
+                        <img src={ProductosIcon} alt="Inventario" width="20" height="20" />
+                        Inventario
                     </NavLink>
                 </li>
 
