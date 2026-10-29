@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row';
 import { obtenerProductos } from '../../data/productos';
 import { formatoCLP } from '../../util/formato';
 import { agregarAlCarrito } from '../../util/carrito';
+import { urlImagen } from '../../util/imagenes';
 
 export default function ProductoDetalle() {
   const { id } = useParams();
@@ -43,7 +44,7 @@ export default function ProductoDetalle() {
       </nav>
       <Row className="g-4 align-items-start">
         <Col md={6}>
-          <img src={producto.imagen} alt={producto.nombre} className="img-fluid rounded shadow-sm" />
+          <img src={urlImagen(producto.imagen)} alt={producto.nombre} className="img-fluid rounded shadow-sm" />
         </Col>
         <Col md={6}>
           <span className="badge text-bg-secondary mb-2">{producto.categoria}</span>

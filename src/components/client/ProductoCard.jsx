@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { formatoCLP } from '../../util/formato';
 import { agregarAlCarrito } from '../../util/carrito';
+import { urlImagen } from '../../util/imagenes';
 
 export default function ProductoCard({ producto }) {
   const [agregado, setAgregado] = useState(false);
@@ -17,7 +18,7 @@ export default function ProductoCard({ producto }) {
   return (
     <Card className="h-100 shadow-sm">
       <Link to={`/productos/${producto.id}`} className="ratio ratio-4x3">
-        <Card.Img variant="top" src={producto.imagen} alt={producto.nombre} className="object-fit-cover" />
+        <Card.Img variant="top" src={urlImagen(producto.imagen)} alt={producto.nombre} className="object-fit-cover" />
       </Link>
       <Card.Body className="d-flex flex-column">
         <span className="badge text-bg-secondary align-self-start mb-2">{producto.categoria}</span>
