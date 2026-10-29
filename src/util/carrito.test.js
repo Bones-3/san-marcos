@@ -1,13 +1,13 @@
 // @vitest-environment jsdom
 import { describe, it, expect, beforeEach } from "vitest";
-import { agregarAlCarrito, obtenerCarrito, obtenerCantidadCarrito } from "./carrito";
+import { agregarAlCarrito, obtenerCarrito, contarCarrito } from "./carrito";
 
 describe("carrito", () => {
   beforeEach(() => {
     localStorage.clear();
   });
 
-  // POSITIVO 
+  // OK COMPLEJO
   it("suma la cantidad si se agrega el mismo producto dos veces", () => {
     agregarAlCarrito(1, 2);
     agregarAlCarrito(1, 3);
@@ -17,6 +17,6 @@ describe("carrito", () => {
 
     expect(carrito.length).toBe(2);
     expect(carrito.find(item => item.id === 1).cantidad).toBe(5);
-    expect(obtenerCantidadCarrito()).toBe(6);
+    expect(contarCarrito()).toBe(6);
   });
 });
