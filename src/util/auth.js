@@ -1,6 +1,15 @@
 const AUTH_KEY = 'adminAuth';
 
-export const estaAutenticado = () => Boolean(localStorage.getItem(AUTH_KEY));
+export const obtenerSesionAdmin = () => {
+  try {
+    const sesion = JSON.parse(localStorage.getItem(AUTH_KEY));
+    return sesion && sesion.email ? sesion : null;
+  } catch {
+    return null;
+  }
+};
+
+export const estaAutenticado = () => obtenerSesionAdmin() !== null;
 
 export const guardarSesionAdmin = (email) =>
   localStorage.setItem(AUTH_KEY, JSON.stringify({ email, fecha: new Date().toISOString() }));

@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { cerrarSesionAdmin } from "../../util/auth";
 import AdminAvatar from "../../assets/logo/person.svg"; // Asegúrate de tener este avatar en tu carpeta de assets
 import ReportesIcon from "../../assets/logo/graph-up.svg"; // Asegúrate de tener este icono en tu carpeta de assets
 import UsuariosIcon from "../../assets/logo/people.svg"; // Asegúrate de tener este icono en tu carpeta de assets
@@ -11,9 +12,8 @@ export const AdminSidebar = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Aquí ejecutas tu lógica de cierre de sesión (ej: logoutContext())
-        localStorage.removeItem('adminAuth');
-        navigate('/login');
+        cerrarSesionAdmin();
+        navigate('/login-admin', { replace: true });
     };
 
     return (

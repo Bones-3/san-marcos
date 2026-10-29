@@ -21,6 +21,7 @@ import Categorias from './pages/admin/Categorias.jsx';
 import Usuarios from './pages/admin/Usuarios.jsx';
 import Reportes from './pages/admin/Reportes.jsx';
 import LoginAdmin from './pages/admin/Login.jsx';
+import { RutaProtegida } from './components/auth/RutaProtegida.jsx';
 import './App.css';
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/login-admin" element={<LoginAdmin />} />
 
         {/* Ruta del panel con el Layout principal (Sidebar + Header) */}
+        <Route element={<RutaProtegida />}>
         <Route path="/admin" element={<AdminLayout />}>
           {/* Al entrar a "/admin" muestra directamente el Dashboard */}
           <Route index element={<Dashboard />} />
@@ -56,6 +58,7 @@ function App() {
           {/*  Al entrar a "/admin/usuarios" muestra la página de usuarios */}
           <Route path="usuarios" element={<Usuarios />} />
           <Route path="reportes" element={<Reportes />} />
+        </Route>
         </Route>
       </Routes>
     </BrowserRouter>

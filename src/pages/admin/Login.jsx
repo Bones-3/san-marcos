@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { estaAutenticado, guardarSesionAdmin } from '../../util/auth';
 import '../../styles/admin-theme.css';
 
-const AUTH_STORAGE_KEY = 'adminAuth';
 const ADMIN_CREDENTIALS = {
   email: 'admin@veterinaria.com',
   password: 'admin123',
@@ -10,16 +10,18 @@ const ADMIN_CREDENTIALS = {
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const destino = location.state?.desde?.pathname || '/admin';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [cargando, setCargando] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem(AUTH_STORAGE_KEY)) {
-      navigate('/admin', { replace: true });
+    if (estaAutenticado()) {
+      navigate(destino, { replace: true });
     }
-  }, [navigate]);
+  }, [navigate, destino]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,11 +38,8 @@ export default function Login() {
       return;
     }
 
-    localStorage.setItem(
-      AUTH_STORAGE_KEY,
-      JSON.stringify({ email: ADMIN_CREDENTIALS.email, fecha: new Date().toISOString() })
-    );
-    navigate('/admin', { replace: true });
+    guardarSesionAdmin(ADMIN_CREDENTIALS.email);
+    navigate(destino, { replace: true });
   };
 
   return (
