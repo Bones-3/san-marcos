@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -8,11 +8,15 @@ import { urlImagen } from '../../util/imagenes';
 
 export default function ProductoCard({ producto }) {
   const [agregado, setAgregado] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
 
   function manejarAgregar() {
     agregarAlCarrito(producto.id, 1, producto.stock);
     setAgregado(true);
-    setTimeout(() => setAgregado(false), 1200);
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setAgregado(false), 1200);
   }
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
@@ -15,6 +15,9 @@ export default function ProductoDetalle() {
   const producto = obtenerProductos().find((p) => p.id === Number(id));
   const [cantidad, setCantidad] = useState(1);
   const [agregado, setAgregado] = useState(false);
+  const timerRef = useRef(null);
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
 
   if (!producto) {
     return (
@@ -31,7 +34,8 @@ export default function ProductoDetalle() {
     agregarAlCarrito(producto.id, cant, producto.stock);
     setCantidad(cant);
     setAgregado(true);
-    setTimeout(() => setAgregado(false), 1200);
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setAgregado(false), 1200);
   }
 
   return (

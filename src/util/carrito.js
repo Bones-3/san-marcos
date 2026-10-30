@@ -21,13 +21,17 @@ export const contarCarrito = () =>
   leer().reduce((total, item) => total + item.cantidad, 0);
 
 export function agregarAlCarrito(id, cantidad = 1, stock = Infinity) {
+  const max = Number.isFinite(stock) ? Math.max(0, stock) : Infinity;
   const items = leer();
   const existente = items.find((i) => i.id === id);
-  if (existente) {
-    existente.cantidad = Math.min(existente.cantidad + cantidad, stock);
-  } else {
-    items.push({ id, cantidad: Math.min(cantidad, stock) });
-  }
+  const actual = existente ? existente.cantidad : 0;
+  const nueva = Math.min(actual + Math.max(1, cantidad), max);
+
+  if (nueva < 1) return;
+
+  if (existente) existente.cantidad = nueva;
+  else items.push({ id, cantidad: nueva });
+
   guardar(items);
 }
 
