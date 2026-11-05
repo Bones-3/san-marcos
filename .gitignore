@@ -30,7 +30,6 @@ coverage
 
 # Editor directories and files
 .vscode/*
-!.vscode/extensions.json
 .idea
 .DS_Store
 Thumbs.db
@@ -40,3 +39,7 @@ Thumbs.db
 *.sln
 *.sw?
 
+# Bases de datos locales
+*.sqlite
+*.sqlite3
+*.db
