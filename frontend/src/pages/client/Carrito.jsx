@@ -4,9 +4,8 @@ import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
-import { obtenerProductos } from '../../data/productos';
 import {
-  obtenerCarrito,
+  obtenerLineasCarrito,
   cambiarCantidad,
   quitarDelCarrito,
   vaciarCarrito,
@@ -15,15 +14,10 @@ import {
 import { formatoCLP } from '../../util/formato';
 
 export default function Carrito() {
-  const [items, setItems] = useState(obtenerCarrito);
+  const [lineas, setLineas] = useState(obtenerLineasCarrito);
 
-  useEffect(() => suscribirCarrito(() => setItems(obtenerCarrito())), []);
+  useEffect(() => suscribirCarrito(() => setLineas(obtenerLineasCarrito())), []);
 
-  const catalogo = obtenerProductos();
-  // Se ignoran ítems cuyo producto ya no existe en el catálogo.
-  const lineas = items
-    .map((i) => ({ ...i, producto: catalogo.find((p) => p.id === i.id) }))
-    .filter((l) => l.producto);
   const total = lineas.reduce((t, l) => t + l.producto.precio * l.cantidad, 0);
 
   if (lineas.length === 0) {
@@ -66,6 +60,7 @@ export default function Carrito() {
                     className="form-control form-control-sm"
                     min="1"
                     max={producto.stock}
+                    step="1"
                     value={cantidad}
                     aria-label={`Cantidad de ${producto.nombre}`}
                     onChange={(e) => cambiarCantidad(id, Number(e.target.value) || 1, producto.stock)}
